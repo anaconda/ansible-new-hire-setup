@@ -1,0 +1,33 @@
+# Software for all engineering new hires
+base_cask_list:
+  - iterm2 # Terminal Emulator
+  - lastpass
+base_package_list:
+  - ansible # To run this playbook
+  - gh # Github CLI tool
+  - awscli # AWS API CLI tool
+  - diff-so-fancy # Additional diff options with Git
+  - docker
+  - docker-compose
+  - ghq # Additional Git CLI tool for managing repos
+  - htop # Performance and process monitor
+  - jq # Json parser
+  - pre-commit # Runs hooks against Git commits to enforce standards
+  - tmux # Virtual terminal tool
+  - vault # Hashicorp's secret manager
+  - yq # Yaml parser
+
+# Optional packages for k8s and terraform
+k8s_package_list:
+  - helm
+  - helmfile
+  - kubectx
+  - ansible-lint
+  - k9s
+  - krew
+  - kubectl
+  - kustomize
+
+tf_package_list:
+  - tflint
+  - tfenv

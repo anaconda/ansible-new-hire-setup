@@ -1,0 +1,36 @@
+---
+- name: Create users file folder
+  ansible.builtin.file:
+    path: "files/{{ ansible_user_id }}/vscode"
+    state: directory
+    mode: 0750
+
+- name: Check for vscode config
+  ansible.builtin.stat:
+    path: "files/{{ ansible_user_id }}/vscode/settings.json"
+  register: vscode_settings
+
+- name: Create vscode base config
+  ansible.builtin.copy:
+    src: "template/vscode/settings.json"
+    dest: "files/{{ ansible_user_id }}/vscode/settings.json"
+    mode: 0644
+  when: not vscode_settings.stat.exists
+
+- name: Create users template folder
+  ansible.builtin.file:
+    path: "templates/{{ ansible_user_id }}/dotfiles"
+    state: directory
+    mode: 0750
+
+- name: Check for git config template
+  ansible.builtin.stat:
+    path: "templates/{{ ansible_user_id }}/dotfiles/gitconfig.j2"
+  register: git_config
+
+- name: Create gitconfig base template
+  ansible.builtin.copy:
+    src: "templates/template/dotfiles/gitconfig.j2"
+    dest: "templates/{{ ansible_user_id }}/dotfiles/gitconfig.j2"
+    mode: 0644
+  when: not git_config.stat.exists

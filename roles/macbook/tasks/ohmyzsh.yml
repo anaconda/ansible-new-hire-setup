@@ -1,0 +1,20 @@
+---
+- name: shell | Install oh-my-zsh
+  tags:
+    - ohmyzsh
+  ansible.builtin.shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  args:
+    creates: "~/.oh-my-zsh"
+
+- name: git | Install git repo tools
+  tags:
+    - p10k
+  ansible.builtin.git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.dest }}"
+    depth: "{{ item.depth|d(1) }}"
+    force: "{{ item.force|d('yes') }}"
+  loop:
+    - repo: https://github.com/romkatv/powerlevel10k.git
+      dest: ~/.oh-my-zsh/custom/themes/powerlevel10k
+  when: p10k | bool

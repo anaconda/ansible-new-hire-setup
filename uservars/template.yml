@@ -1,0 +1,23 @@
+---
+# Base customization
+
+ohmyzsh: "false"
+p10k: "false"
+k8s: "false"
+terraform: "false"
+user_package_list:
+#  - visual-studio-code
+user_cask_list:
+#  - a cask here
+
+# Advanced customization
+
+user_dir_list:
+  - path: "~/repos"
+user_file_list:
+  - src: "{{ ansible_user_id }}/vscode/settings.json"
+    dest: "~/Library/Application Support/Code/User/settings.json"
+    mode: "0640"
+user_template_list:
+  - src: "{{ ansible_user_id }}/dotfiles/gitconfig"
+    dest: "~/.gitconfig"

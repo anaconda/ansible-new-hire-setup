@@ -1,0 +1,14 @@
+---
+# Add sudo group with no password
+- hosts: all
+  tasks:
+    - name: copy | Add no password sudo for running user
+      ansible.builtin.lineinfile:
+        path: "/private/etc/sudoers.d/{{ ansible_user_id }}"
+        state: present
+        regexp: "{{ ansible_user_id }}"
+        line: "{{ ansible_user_id }} ALL=(ALL) NOPASSWD: ALL"
+        validate: "visudo -cf %s"
+        create: true
+        mode: 0440
+      become: yes

@@ -1,0 +1,117 @@
+---
+# Univeral tasks
+- name: Check for uservars file
+  ansible.builtin.stat:
+    path: "uservars/{{ ansible_user_id }}.yml"
+  register: uservars_exists
+  tags:
+    - always
+
+- name: Create uservars file if it doesn't exist
+  ansible.builtin.copy:
+    src: "uservars/template.yml"
+    dest: "uservars/{{ ansible_user_id }}.yml"
+    mode: 0644
+  when: not uservars_exists.stat.exists
+  tags:
+    - always
+
+- name: include_vars | Include username based vars
+  ansible.builtin.include_vars:
+    file: "uservars/{{ ansible_user_id }}.yml"
+  tags:
+    - always
+
+- name: homebrew_cask | Upgrade packages
+  tags:
+    - packages
+  community.general.homebrew_cask:
+    update_homebrew: yes
+    upgrade_all: yes
+
+- name: homebrew | Install packages
+  tags:
+    - packages
+  community.general.homebrew:
+    name: "{{ base_package_list }}"
+
+- name: homebrew_cask | Install base casks
+  tags:
+    - packages
+  community.general.homebrew_cask:
+    name: "{{ base_cask_list }}"
+
+# Optional software roles
+
+- include_tasks: k8s.yml
+  when: k8s | bool
+
+- include_tasks: ohmyzsh.yml
+  when: ohmyzsh | bool
+
+- name: homebrew | Install TF packages
+  community.general.homebrew:
+    name: "{{ tf_package_list }}"
+  when: terraform | bool
+
+# User-defined software
+
+- name: homebrew | Install user packages
+  tags:
+    - never
+    - custom
+  community.general.homebrew:
+    name: "{{ user_package_list }}"
+  when: user_package_list is defined
+
+- name: homebrew_cask | Install user-defined casks
+  tags:
+    - never
+    - custom
+  community.general.homebrew_cask:
+    name: "{{ user_cask_list }}"
+  when: user_cask_list is defined
+
+# Advanced customization tasks
+
+- import_tasks: template.yml
+  tags:
+    - never
+    - adv-custom
+
+- name: file | Create user-defined directories
+  tags:
+    - never
+    - adv-custom
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: 0750
+  loop: "{{ user_dir_list }}"
+  when: user_dir_list is defined
+
+- name: copy | Copy files
+  tags:
+    - never
+    - adv-custom
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner|d(ansible_user_id) }}"
+    group: "{{ item.group|d('staff') }}"
+    mode: "{{ item.mode|d('0640') }}"
+  loop: "{{ user_file_list }}"
+  when: user_file_list is defined
+
+- name: template | Template files
+  tags:
+    - never
+    - adv-custom
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner|d(ansible_user_id) }}"
+    group: "{{ item.group|d('staff') }}"
+    mode: "{{ item.mode|d('0640') }}"
+  loop: "{{ user_template_list }}"
+  when: user_template_list is defined
