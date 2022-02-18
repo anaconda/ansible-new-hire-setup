@@ -48,10 +48,10 @@ A few things need to be done to use this playbook:
 git clone git@github.com:anaconda/ansible-new-hire-setup.git
 ```
 
-2. [Install Homebrew for Mac](https://docs.brew.sh/Installation)
+2. [Install Homebrew for Mac (M1_ARM and Intel_x86](https://docs.brew.sh/Installation)
 
 ```
-sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
 
 3. Use Homebrew to install Ansible
