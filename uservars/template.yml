@@ -19,5 +19,5 @@ user_file_list:
     dest: "~/Library/Application Support/Code/User/settings.json"
     mode: "0640"
 user_template_list:
-  - src: "{{ ansible_user_id }}/dotfiles/gitconfig"
+  - src: "{{ ansible_user_id }}/dotfiles/gitconfig.j2"
     dest: "~/.gitconfig"
