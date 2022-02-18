@@ -2,6 +2,7 @@
 base_cask_list:
   - iterm2 # Terminal Emulator
   - lastpass
+  - rectangle # Window snapping!
 base_package_list:
   - ansible # To run this playbook
   - gh # Github CLI tool
