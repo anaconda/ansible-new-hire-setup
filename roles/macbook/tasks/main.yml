@@ -22,6 +22,11 @@
   tags:
     - always
 
+- name: hostname | set hostname
+  when: hostname is defined
+  ansible.builtin.hostname:
+    name: "{{ hostname }}"
+
 - name: homebrew_cask | Upgrade packages
   tags:
     - packages
