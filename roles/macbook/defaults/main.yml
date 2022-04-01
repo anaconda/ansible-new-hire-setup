@@ -1,5 +1,6 @@
 # Software for all engineering new hires
 base_cask_list:
+  - docker
   - iterm2 # Terminal Emulator
   - lastpass
   - rectangle # Window snapping!
@@ -8,7 +9,6 @@ base_package_list:
   - gh # Github CLI tool
   - awscli # AWS API CLI tool
   - diff-so-fancy # Additional diff options with Git
-  - docker
   - docker-compose
   - ghq # Additional Git CLI tool for managing repos
   - htop # Performance and process monitor
