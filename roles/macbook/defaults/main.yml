@@ -18,6 +18,7 @@ base_package_list:
   - vault # Hashicorp's secret manager
   - yq # Yaml parser
   - bash # Update bash from 3.2 to 5.x to fix this https://github.com/antonbabenko/pre-commit-terraform/issues/337
+  - secretive # enable saving ssh keys in the Secure Enclave https://support.apple.com/guide/security/secure-enclave-sec59b0b31ff/web 
 
 # Optional packages for k8s and terraform
 k8s_package_list:
