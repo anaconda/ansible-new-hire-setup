@@ -39,7 +39,7 @@
     - {
         name: helm-diff,
         url: https://github.com/databus23/helm-diff,
-        version: v3.1.3,
+        version: v3.6.0,
       }
     - {
         name: helm-git,
