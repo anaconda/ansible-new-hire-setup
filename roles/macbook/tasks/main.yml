@@ -108,6 +108,20 @@
   loop: "{{ user_file_list }}"
   when: user_file_list is defined
 
+- name: url | Download files
+  tags:
+    - never
+    - adv-custom
+  ansible.builtin.get_url:
+    url: "{{ item.url }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner|d(ansible_user_id) }}"
+    group: "{{ item.group|d('staff') }}"
+    mode: "{{ item.mode|d('0640') }}"
+    force: "{{ item.force|d(true) }}"
+  loop: "{{ user_url_list }}"
+  when: user_url_list is defined
+
 - name: template | Template files
   tags:
     - never
