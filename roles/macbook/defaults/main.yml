@@ -18,6 +18,9 @@ base_package_list:
   - vault # Hashicorp's secret manager
   - yq # Yaml parser
   - bash # Update bash from 3.2 to 5.x to fix this https://github.com/antonbabenko/pre-commit-terraform/issues/337
+  - norwoodj/tap/helm-docs # helm chart documentation generator, used with pre-commit
+  - terraform-docs # terraform documentation generator, used with pre-commit
+  - hadolint # Dockerfile linter
 
 # Optional packages for k8s and terraform
 k8s_package_list:
