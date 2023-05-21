@@ -60,7 +60,7 @@ git clone git@github.com:anaconda/ansible-new-hire-setup.git
 brew install ansible
 ```
 
-From the repo's baes diectory, install the Ansible community upstream repository
+From the repo's base directory, install the Ansible community upstream repository
 
 ```
 ansible-galaxy install -r requirements.yaml
