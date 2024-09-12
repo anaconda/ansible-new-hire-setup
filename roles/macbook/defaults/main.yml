@@ -32,6 +32,7 @@ k8s_package_list:
   - krew
   - kubectl
   - kustomize
+  - argocd
 
 tf_package_list:
   - tflint
