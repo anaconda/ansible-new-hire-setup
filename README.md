@@ -38,35 +38,40 @@ base_package_list:
   - yq # Yaml parser
 ```
 
+These are common tools that most engineers will find useful including git tools, iTerm2, Docker, and aws-cli. Feel free to remove ones you don't want.
+
 # 1. Prerequisites
 
 A few things need to be done to use this playbook:
 
-1. Clone this repo to the local machine (requires Github access and valid SSH key uploaded to GH)
+1. Clone this repo to the local machine (requires Github access and valid SSH key [uploaded to GH](https://docs.github.com/en/enterprise-cloud@latest/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) and [authorized for SSO](https://docs.github.com/en/enterprise-cloud@latest/authentication/authenticating-with-saml-single-sign-on/authorizing-an-ssh-key-for-use-with-saml-single-sign-on))
 
 ```
 git clone git@github.com:anaconda/ansible-new-hire-setup.git
 ```
 
-2. [Install Homebrew for Mac (M1_ARM and Intel_x86](https://docs.brew.sh/Installation)
+2. [Install Homebrew for Mac](https://docs.brew.sh/Installation)
 
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
 
-3. Use Homebrew to install Ansible
+3. Install Miniconda: https://docs.anaconda.com/miniconda/miniconda-install/
+
+4. Inside this repo, use miniconda to create an [environment](https://docs.conda.io/projects/conda/en/stable/user-guide/concepts/environments.html) and install Ansible
 
 ```
-brew install ansible
+cd ansible-new-hire-setup
+conda create -p ./env
+conda activate ./env
+conda install -c conda-forge ansible
 ```
 
-From the repo's base directory, install the Ansible community upstream repository
+5. Install the Ansible community upstream repository
 
 ```
 ansible-galaxy install -r requirements.yaml
 ```
-
-These are common tools that most engineers will find useful including git tools, iTerm2, Docker, and aws-cli. Feel free to remove ones you don't want.
 
 # 2. First Run - Installing Packages and Casks
 
