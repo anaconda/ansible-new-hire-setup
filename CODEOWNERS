@@ -1,5 +1,5 @@
 # These owners will be the default owners for everything in
 # the repo. Unless a later match takes precedence,
-# @anaconda/anaconda-devops will be requested for
+# @anaconda/platform-core-onduty will be requested for
 # review when someone opens a pull request.
 *       @anaconda/platform-core-onduty
